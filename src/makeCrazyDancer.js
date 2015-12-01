@@ -14,5 +14,4 @@ makeCrazyDancer.prototype.step = function() {
     makeDancer.prototype.step.call(this);
     var changeColor = function() { this.$node.css('border', '20px solid blue') }
     setTimeout(changeColor.bind(this), 800);
-    
   };

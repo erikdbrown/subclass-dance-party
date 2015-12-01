@@ -2,7 +2,7 @@
 var makeDancer = function(top, left, timeBetweenSteps) {
   this.timeBetweenSteps = timeBetweenSteps
   // use jQuery to create an HTML <span> tag
-  this.$node = $('<span class="dancer"></span>');
+  this.$node = $('<span class="solider"><img src="http://www.picgifs.com/graphics/a/army/graphics-army-725817.gif" /></span>');
   this.setPosition(top, left);
   this.step();
 
@@ -11,7 +11,7 @@ var makeDancer = function(top, left, timeBetweenSteps) {
   // this one sets the position to some random default point within the body
 };
   
-makeDancer.prototype.setPosition = function(top, left) {
+makeDancer.prototype.setPosition = function(left, top) {
   // Use css top and left properties to position our <span> tag
   // where it belongs on the page. See http://api.jquery.com/css/
   //
