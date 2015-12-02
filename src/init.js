@@ -3,6 +3,7 @@ $(document).ready(function() {
 
   $(".addDancerButton").on("click", function(event) {
 
+    var dancerMakerImage = $(this).data("src-img");
     var dancerMakerFunctionName = $(this).data("dancer-maker-function-name");
 
     // get the maker function for the kind of dancer we're supposed to make
@@ -13,7 +14,8 @@ $(document).ready(function() {
     var dancer = new dancerMakerFunction(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
-      Math.random() * 1000
+      Math.random() * 1000,
+      dancerMakerImage
     );
     window.dancers.push(dancer);
     $('body').append(dancer.$node);
@@ -43,9 +45,45 @@ $(document).ready(function() {
     $('.soldier').show();
     for(var i = 0; i < window.dancers.length; i++){
       clearInterval(window.dancers[i].timerID);
+      if (window.dancers[i].CollisionID) {
+        clearInterval(window.dancers[i].CollisionID);
+      }
       window.dancers[i].setPosition($startWidth - (linespace * i), (heightSpace * i) + startHeight);
     }
    });
+
+
+
+   $(".reverse").on("click", function(event){
+
+    for (var i = 0; i < window.dancers.length; i++){
+      var randomTop = $("body").height() * Math.random();
+      var randomLeft = $("body").width() * Math.random();
+      window.dancers[i].setPosition(randomLeft, randomTop);
+      window.dancers[i].timerID = makeDancer.prototype.step.call(window.dancers[i]);
+    }
+
+   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 });
 

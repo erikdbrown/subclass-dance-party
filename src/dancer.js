@@ -1,8 +1,10 @@
 // Creates and returns a new dancer object that can step
-var makeDancer = function(top, left, timeBetweenSteps) {
+var makeDancer = function(top, left, timeBetweenSteps, imgURL) {
+  imgURL = imgURL || "http://www.picgifs.com/graphics/a/army/graphics-army-725817.gif"
   this.timeBetweenSteps = timeBetweenSteps
   // use jQuery to create an HTML <span> tag
-  this.$node = $('<span id="'+ window.dancers.length +'" class="soldier"><img src="http://www.picgifs.com/graphics/a/army/graphics-army-725817.gif" /></span>');
+  this.$node = $('<span id="'+ window.dancers.length +'" class="soldier"><img src="' + imgURL + '" /></span>');
+  // http://www.picgifs.com/graphics/a/army/graphics-army-725817.gif
   this.setPosition(left, top);
   // this.step();
 

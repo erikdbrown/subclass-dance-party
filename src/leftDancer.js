@@ -1,9 +1,9 @@
-var makeLeftDancer = function(top, left, timeBetweenSteps) {
-  makeDancer.call(this, top, left, timeBetweenSteps);
+var makeLeftDancer = function(top, left, timeBetweenSteps, imgURL) {
+  makeDancer.call(this, top, left, timeBetweenSteps, imgURL);
   this.timerID = makeDancer.prototype.step.call(this);
   // this.$node = $('<span class="solider"><img src="http://www.gifizer.com/gifs/in/a5b76c4d6476f89802a08e7a7c359e1f.gif" /></span>');
   this.goingLeft = true;
-  setInterval(this.collision.bind(this), 10);
+  this.CollisionID = setInterval(this.collision.bind(this), 100);
 };
 
 
@@ -23,8 +23,9 @@ makeLeftDancer.prototype.step = function() {
       // },1000);
     } else {
      this.$node.animate({
-     left: "-=" + (Math.random() * 200)
-     },500);
+     left: "-=300" 
+     // + (Math.random() * 200)
+     }, 50);
    }
   } else {
     if (position >= $('body').width() - 100) {
@@ -34,8 +35,9 @@ makeLeftDancer.prototype.step = function() {
       // },1000);
     } else {
       this.$node.animate({
-        left: "+=" + (Math.random() * 200)
-      },500);
+        left: "+=300" 
+        // + (Math.random() * 200)
+      },50);
     }
   }
   
@@ -56,7 +58,10 @@ makeLeftDancer.prototype.collision = function(){
        var c = Math.sqrt((Math.pow(a,2) + Math.pow(b,2)));
        if (c < 180){
         var jQid = '#' + i;
-        $(jQid).rotate(180);
+        $(jQid).rotate({
+            angle: 0,
+            animateTo:360
+          });
       }
     }
   }

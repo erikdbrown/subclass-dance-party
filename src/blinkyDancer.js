@@ -1,5 +1,5 @@
-var makeBlinkyDancer = function(top, left, timeBetweenSteps) {
-  makeDancer.call(this, top, left, timeBetweenSteps);
+var makeBlinkyDancer = function(top, left, timeBetweenSteps, imgURL) {
+  makeDancer.call(this, top, left, timeBetweenSteps, imgURL);
   this.timerID = makeDancer.prototype.step.call(this);
 };
 
