@@ -2,7 +2,8 @@ var makeLeftDancer = function(top, left, timeBetweenSteps) {
   makeDancer.call(this, top, left, timeBetweenSteps);
   this.timerID = makeDancer.prototype.step.call(this);
   // this.$node = $('<span class="solider"><img src="http://www.gifizer.com/gifs/in/a5b76c4d6476f89802a08e7a7c359e1f.gif" /></span>');
-  this.goingLeft = true 
+  this.goingLeft = true;
+  setInterval(this.collision.bind(this), 10);
 };
 
 
@@ -41,27 +42,25 @@ makeLeftDancer.prototype.step = function() {
 };
 
 makeLeftDancer.prototype.collision = function(){
-//traverse window.dancers
-for (var i = 0; i < window.dancers.length; i++) {
-  if (windows.dancers[i] === this) {
-    continue;
-  } else {
-    var aDancer = windows.dancers[i].$node.css('left').split('p')[0];
-    var aThis = this.$node.css('left').split('p')[0];
-    var bDancer = windows.dancers[i].$node.css('top').split('p')[0];
-    var bThis = this.$node.css('top').split('p')[0];
-  
-     var a = aDancer - aThis;
-     var b = bDancer - bThis;
-     var c = Math.sqrt((Math.power(a,2) + Math.power(b,2)));
-     if (c < 10){
-      $('"#'+i+'"').rotate(90);
-   }
+  for (var i = 0; i < window.dancers.length; i++) {
+    if (window.dancers[i] === this) {
+      continue;
+    } else {
+      var aDancer = window.dancers[i].$node.css('left').split('p')[0];
+      var aThis = this.$node.css('left').split('p')[0];
+      var bDancer = window.dancers[i].$node.css('top').split('p')[0];
+      var bThis = this.$node.css('top').split('p')[0];
+    
+       var a = aDancer - aThis;
+       var b = bDancer - bThis;
+       var c = Math.sqrt((Math.pow(a,2) + Math.pow(b,2)));
+       if (c < 180){
+        var jQid = '#' + i;
+        $(jQid).rotate(180);
+      }
+    }
   }
-}
-
-
-}
+};
 
 
 
